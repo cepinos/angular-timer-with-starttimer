@@ -1,6 +1,6 @@
 {
   "author": "Siddique Hameed",
-  "name": "angular-timer",
+  "name": "angular-timer-with-starttimer",
   "version": "1.0.12",
   "homepage": "https://github.com/siddii/angular-timer",
   "licenses": {
@@ -10,7 +10,7 @@
   "bugs": "https://github.com/siddii/angular-timer/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:siddii/angular-timer.git"
+    "url": "git@github.com:cesarpino547/angular-timer-with-starttimer.git"
   },
   "dependencies": {},
   "devDependencies": {
