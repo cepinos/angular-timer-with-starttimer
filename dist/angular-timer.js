@@ -36,8 +36,8 @@ angular.module('timer', [])
         $scope.countdown = $scope.countdownattr && parseInt($scope.countdownattr, 10) >= 0 ? parseInt($scope.countdownattr, 10) : undefined;
         $scope.isRunning = false;
 
-        $scope.$on('timer-start', function () {
-          $scope.start();
+        $scope.$on('timer-start', function (startTime) {
+          $scope.start(startTime || 0);
         });
 
         $scope.$on('timer-resume', function () {
@@ -62,8 +62,12 @@ angular.module('timer', [])
           }
         }
 
-        $scope.start = $element[0].start = function () {
-          $scope.startTime = $scope.startTimeAttr ? new Date($scope.startTimeAttr) : new Date();
+        $scope.start = $element[0].start = function (startTime) {
+          if(startTime){
+            $scope.startTime = new Date(startTime);
+          }else{
+            $scope.startTime = $scope.startTimeAttr ? new Date($scope.startTimeAttr) : new Date();
+          }
           $scope.endTime = $scope.endTimeAttr ? new Date($scope.endTimeAttr) : null;
           if (!$scope.countdown) {
             $scope.countdown = $scope.countdownattr && parseInt($scope.countdownattr, 10) > 0 ? parseInt($scope.countdownattr, 10) : undefined;
@@ -112,13 +116,11 @@ angular.module('timer', [])
             $scope.days = Math.floor((($scope.millis / (3600000)) / 24));
             $scope.daysS = $scope.days==1 ? '' : 's';
 
-
             //add leading zero if number is smaller than 10
             $scope.sseconds = $scope.seconds < 10 ? '0' + $scope.seconds : $scope.seconds;
             $scope.mminutes = $scope.minutes < 10 ? '0' + $scope.minutes : $scope.minutes;
             $scope.hhours =  $scope.hours < 10 ? '0' + $scope.hours : $scope.hours;
             $scope.ddays =  $scope.days < 10 ? '0' + $scope.days : $scope.days;
-
 
         }
         //determine initial values of time units and add AddSeconds functionality
